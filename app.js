@@ -34,7 +34,7 @@ db.once("open" , () =>
 
 //configures session
 app.use(session({
-  secret: 'eeeeeeeeeeeeeeeeee',
+  secret: superSecretOBJ.sessionSecret,
   resave: true,
   saveUninitialized: true,
   store: new mongoStore({ mongooseConnection : db }),
