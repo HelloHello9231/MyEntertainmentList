@@ -3,8 +3,9 @@ const router = express.Router();
 const user = require("../models/User.js").user;
 const list = require("../models/User.js").list;
 const fetch = require("node-fetch");
+const superSecretOBJ = require("../config/config.js");
 
-let apiKey = "c7b71fb388c5c06cd9d209331a979d0d";
+let apiKey = superSecretOBJ.apiKey;
 
 router.get("/MyLists",(req,res) =>
 {

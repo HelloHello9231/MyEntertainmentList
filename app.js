@@ -7,14 +7,15 @@ const checkAutho = require("./config/autho.js");
 const mongoStore = require("connect-mongo")(session);
 const fetch = require("node-fetch");
 const list = require("./models/User.js").list;
+const superSecretOBJ = require("./config/config.js");
 
 
-const uri = "mongodb+srv://harry:googlebettersavethispasswordelse@passportjstut-ksji7.mongodb.net/MyEntertainmentList?retryWrites=true&w=majority";
+const uri = superSecretOBJ.mongoURI;
 
 //initlise express
 let app = express();
 
-let apiKey = "c7b71fb388c5c06cd9d209331a979d0d";
+let apiKey = superSecretOBJ.apiKey;
 
 let port = process.env.PORT || 8080;
 
@@ -235,7 +236,7 @@ function getMoviesOrShowCredits(id,category)
      .then(res => res.json())
      .then(data =>
        {
-         
+
          resolve(data);
        })
   })
