@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<head>
+<title>Movie Info</title>
+<link rel="stylesheet" type="text/css" href="/shared.css" />
+<link rel="stylesheet" type="text/css" href="/info.css" />
+
+<style>
+
+body
+{
+  overflow-y: auto;
+}
+
+.all-info
+{
+  margin-top: 20px;
+  min-height: 20vh;
+}
+
+.basic
+{
+  display: block;
+}
+
+</style>
+</head>
+
+<body>
+
+<%- include("./partials/nav",{user: user}) %>
+
+
+<div class="container">
+
+<div class="all-info">
+
+<div class="basic">
+<img src="https://image.tmdb.org/t/p/original/<%=person.profile_path%>" />
+
+<div class="info">
+<h2><%= person.name %></h2>
+<p><%= person.biography %></p>
+<div>
+<h3>Birthday: <%= person.birthday %></h3>
+<h3>Born: <%= person.place_of_birth %></h3>
+<h3>Job: <%= person.known_for_department %></h3>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

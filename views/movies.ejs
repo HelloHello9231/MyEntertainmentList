@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<head>
+<title>Movies</title>
+<link rel="stylesheet" type="text/css" href="/shared.css" />
+<link rel="stylesheet" type="text/css" href="/display.css" />
+
+</head>
+
+<body>
+
+<%- include("./partials/nav"), {user: user}%>
+
+<div class="container">
+
+<h1>Movies</h1>
+
+<div class="query">
+<select id="select">
+<option value="popular">Popular</option>
+<option value="now_playing">Now Playing</option>
+<option value="top_rated">Top Rated</option>
+<option value="upcoming">Upcoming</option>
+</select>
+</div>
+
+
+<div class="grid">
+<% movies.forEach((movie) =>
+{%>
+   <div class="card movie" id="<%= movie.id %>">
+    <h3 id="https://image.tmdb.org/t/p/original/<%=movie.backdrop_path%>" class="hidden"></h3>
+    <h3><%= movie.title %></h3>
+    <h3><%= movie.vote_average %></h3>
+    <p><%= movie.release_date%></p>
+   </div>
+<%})%>
+</div>
+
+<div class="operate">
+<button id="prev">Previous</button>
+<button id="next">Next</button>
+</div>
+
+</div>
+
+
+<script>
+
+let currentPage = <%- currentPage %>;
+let maxPageCount= <%- maxPageCount %>;
+
+let nextBtn = document.getElementById("next");
+let prevBtn = document.getElementById("prev");
+let selectedType = document.getElementById("select");
+
+let cards = Array.from(document.querySelectorAll(".card"));
+
+selectedType.value = "<%= filterType %>";
+
+selectedType.addEventListener("change",() =>
+{
+    window.location.href = `/movies?type=${selectedType.value}&pageNum=1`
+})
+
+nextBtn.addEventListener("click",() =>
+{
+  if(currentPage + 1 <= maxPageCount)
+  {
+    window.location.href = `/movies?type=${selectedType.value}&pageNum=${currentPage + 1}`
+  }
+})
+
+prevBtn.addEventListener("click",() =>
+{
+  if(currentPage - 1 >= 1)
+  {
+    window.location.href = `/movies?type=${selectedType.value}&pageNum=${currentPage - 1}`
+  }
+})
+
+cards.forEach((card) =>
+{
+  card.style.background = `url("${card.children[0].id}")`;
+  card.style.backgroundPosition = "center";
+  card.style.backgroundRepeat = "no-repeat";
+  card.style.backgroundSize =  "cover";
+})
+
+</script>
+
+<script src="/InteractMovie.js"> </script>
+</body>
+
+</html>

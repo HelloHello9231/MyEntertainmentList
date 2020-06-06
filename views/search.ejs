@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<head>
+<title>Movies</title>
+<link rel="stylesheet" type="text/css" href="/shared.css" />
+<link rel="stylesheet" type="text/css" href="/display.css" />
+
+</head>
+
+<body>
+
+<%- include("./partials/nav"), {user: user}%>
+
+<div class="container">
+
+<h1>Movies Search</h1>
+
+<div class="query">
+<input type="search" id="movie-search-bar" />
+</div>
+
+<div class="grid">
+<% if(typeof movies !== "undefined")
+{
+  movies.forEach((movie) =>
+{%>
+   <div class="card movie" id="<%= movie.id %>">
+    <h3 id="https://image.tmdb.org/t/p/original/<%=movie.backdrop_path%>" class="hidden"></h3>
+    <h3><%= movie.title %></h3>
+    <h3><%= movie.vote_average %></h3>
+    <p><%= movie.release_date%></p>
+   </div>
+<%})
+}%>
+</div>
+
+</div>
+
+<div class="container">
+
+<h1>Show Search</h1>
+
+<div class="query">
+<input type="search" id="show-search-bar" />
+</div>
+
+<div class="grid">
+  <% if(typeof shows !== "undefined")
+  {
+    shows.forEach((movie) =>
+  {%>
+     <div class="card show" id="<%= movie.id %>">
+      <h3 id="https://image.tmdb.org/t/p/original/<%=movie.backdrop_path%>" class="hidden"></h3>
+      <h3><%= movie.name %></h3>
+      <h3><%= movie.vote_average %></h3>
+      <p><%= movie.first_air_date%></p>
+     </div>
+  <%})
+  }%>
+</div>
+
+</div>
+
+
+<script>
+let cards = Array.from(document.querySelectorAll(".card"));
+let movieSearch = document.getElementById("movie-search-bar");
+let showSearch = document.getElementById("show-search-bar");
+
+movieSearch.addEventListener("search",() =>
+{
+  window.location.href = `/Search?q=${movieSearch.value}&category=movie`;
+})
+
+showSearch.addEventListener("search",() =>
+{
+  window.location.href = `/Search?q=${showSearch.value}&category=tv`;
+})
+
+cards.forEach((card) =>
+{
+  card.style.background = `url("${card.children[0].id}")`;
+  card.style.backgroundPosition = "center";
+  card.style.backgroundRepeat = "no-repeat";
+  card.style.backgroundSize =  "cover";
+})
+
+</script>
+
+<script src="/InteractMovie.js"> </script>
+<script src="/InteractShow.js"> </script>
+</body>
+
+</html>

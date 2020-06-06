@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<head>
+<title>My Lists</title>
+<link rel="stylesheet" type="text/css" href="/shared.css" />
+<link rel="stylesheet" type="text/css" href="/info.css" />
+<style>
+
+body
+{
+  overflow-y: auto;
+}
+
+.all-info
+{
+  margin-top: 20px;
+  min-height: 50vw;
+}
+
+
+.basic
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lists
+{
+  width: 100%;
+  height: 20%;
+
+}
+
+.list
+{
+  background-color:#4a939e;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 10px;
+  cursor: pointer;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.list:hover
+{
+  background-color:  #316c8f;
+}
+
+.list h3
+{
+  padding: 5px;
+  font-size: 1.2rem;
+}
+
+.list .details
+{
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  margin: 5px;
+}
+
+input
+{
+  border: none;
+  width: 300px;
+  padding: 5px;
+  color: black;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.list .del
+{
+  padding: 2px;
+  margin-top: 10px;
+  width: 60%;
+}
+
+.list .del button
+{
+  width: 100%;
+  border: none;
+  background-color: white;
+  transition: 0.5s;
+}
+
+.list .del button:hover
+{
+  background-color: #ff6666;
+}
+
+button
+{
+  width: 200px;
+  border-radius: 5px;
+  border: none;
+  padding: 3px;
+  color: black;
+  cursor: pointer;
+  margin: 5px;
+}
+
+</style>
+</head>
+
+<body>
+
+<%- include("../partials/nav",{user: user}) %>
+
+<div class="container">
+
+<div class="all-info">
+
+<div class="basic">
+<h1>Your Lists</h1>
+<div class="lists">
+<% Lists.forEach((obj) =>
+{%>
+   <div class="list" id="<%= obj.list.id %>">
+   <h3><%= obj.list.ListName %></h3>
+    <div class="details">
+     <h4>Movies <%= obj.list.Movies.length %></h4>
+     <h4>Shows <%= obj.list.TvShows.length %></h4>
+     <h4>Movies Total Time <%= obj.totalMoiveWatchTime %>mins</h4>
+    </div>
+    <div class="del">
+    <button class="deleteBtn">Delete</button>
+    </div>
+   </div>
+<%})%>
+</div>
+
+<input type="text" placeholder="List Name" id="input"/>
+<button id="add">Add!</button>
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+let input = document.getElementById("input");
+let addBtn = document.getElementById("add");
+let delBtns = Array.from(document.querySelectorAll(".deleteBtn"));
+
+addBtn.addEventListener("click",() =>
+{
+  if(input.value.length > 0)
+  {
+    console.log("test");
+    makeAddRequest(input.value);
+  }
+})
+
+delBtns.forEach((btn) =>
+{
+  btn.addEventListener("click",() =>
+  {
+    makeDeleteRequest(btn.parentElement.parentElement.id);
+  })
+})
+
+function makeAddRequest(lName)
+{
+  fetch("/user/createList",
+  {
+    method: "POST",
+    headers:
+    {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({name: lName })
+  })
+  .then(() =>
+  {
+    location.reload();
+  })
+}
+
+function makeDeleteRequest(listId)
+{
+  fetch("/user/deleteList",
+  {
+    method: "POST",
+    headers:
+    {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({id: listId })
+  })
+  .then(() =>
+  {
+    location.reload();
+  })
+}
+
+</script>
+
+
+</body>
+
+
+</html>

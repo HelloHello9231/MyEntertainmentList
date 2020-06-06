@@ -1,0 +1,105 @@
+body
+{
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container
+{
+  width: 90vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+.container h1
+{
+  font-size: 2rem;
+  font-weight: bolder;
+  color: #edf2f7;
+  padding: 10px;
+}
+
+.query
+{
+  width: 70%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.query input
+{
+  padding: 3px 5px;
+  width: 60%;
+  border-radius: 15px;
+  border: none;
+}
+
+.query select
+{
+  border: none;
+  border-radius: 15px;
+  padding: 3px;
+  width: 30%;
+  text-align: center;
+
+}
+
+
+.grid
+{
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  grid-gap: 20px;
+}
+
+.card
+{
+  background: #3c366b;
+  border-radius: 10px;
+  height: 400px;
+  padding: 10px;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+
+}
+
+.card h3
+{
+  text-shadow: 0 2px black;
+  font-size: 2rem;
+  color:white;
+  text-align: center;
+}
+
+.card p
+{
+  text-shadow: 0 5px black;
+  font-size: 2rem;
+  color:white;
+}
+
+.operate
+{
+  padding: 10px;
+  margin-top: 5px;
+}
+
+.operate button
+{
+  padding: 5px;
+  border: none;
+  width: 150px;
+  border-radius: 5px;
+  cursor: pointer;
+}

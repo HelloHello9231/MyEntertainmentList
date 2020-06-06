@@ -1,0 +1,7 @@
+body
+{
+  background: linear-gradient(180deg,#4a939e,#316c8f);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  overflow-x: hidden;
+}

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<head>
+<title>Movie Info</title>
+<link rel="stylesheet" type="text/css" href="/shared.css" />
+<link rel="stylesheet" type="text/css" href="/info.css" />
+</head>
+
+<body>
+
+<%- include("./partials/nav",{user: user}) %>
+
+
+<div class="container">
+
+<div class="all-info">
+
+<div class="basic">
+<img src="https://image.tmdb.org/t/p/original/<%=basic.poster_path%>" />
+
+<div class="info">
+<h2><%= basic.title %></h2>
+<p><%= basic.overview %></p>
+<div>
+<% if(basic.budget === 0)
+{%>
+  <h3>Budget: Unknown</h3>
+<%}
+else
+{%>
+  <h3>Budget: $<%= basic.budget %></h3>
+<%}%>
+<h3>Run Time: <%= basic.runtime %>mins</h3>
+<h3>Rating: <%= basic.vote_average %>/10</h3>
+</div>
+</div>
+
+<% if(typeof user !== "undefined")
+{%>
+<div class="lists">
+<h2>Add To List</h2>
+<select id="select">
+  <% userLists.forEach((list) =>
+  {%>
+    <option id="<%= list.id %>"><%= list.ListName %></option>
+  <%})%>
+</select>
+<button id="add">Add!</button>
+</div>
+<%}
+else
+{%>
+  <a href="/autho/verify">Log In To Add To Your Lists</a>
+<%}%>
+
+</div>
+
+<div class="cast">
+<h1>Cast</h1>
+<div class="display">
+<% credits.cast.forEach((member) =>
+{%>
+  <div class="card person" id="<%= member.credit_id %>">
+  <img src="https://image.tmdb.org/t/p/original/<%=member.profile_path%>" />
+  <h3><%= member.name %></h3>
+  <h4>As: <%= member.character %></h4>
+  </div>
+<% })%>
+
+</div>
+</div>
+
+<div class="cast">
+<h1>Crew</h1>
+<div class="display">
+<% credits.crew.forEach((member) =>
+{%>
+  <div class="card person" id="<%=  member.credit_id %>">
+  <img src="https://image.tmdb.org/t/p/original/<%=member.profile_path%>" />
+  <h3><%= member.name %></h3>
+  <h4><%= member.job %></h4>
+  <h4><%= member.department%></h4>
+  </div>
+<% })%>
+
+</div>
+</div>
+
+<div class="cast">
+<h1>Recommendations</h1>
+<div class="display">
+<% recommendations.results.forEach((member) =>
+{%>
+  <div class="card movie" id="<%= member.id %>">
+  <img src="https://image.tmdb.org/t/p/original/<%=member.poster_path%>" />
+  <h3><%= member.title %></h3>
+  <h4><%= member.vote_average %>/10</h4>
+  <h4><%= member.release_date %></h4>
+  </div>
+<% })%>
+
+</div>
+</div>
+
+</div>
+
+</div>
+
+<script src="/InteractMovie.js"> </script>
+<script src="/InteractPerson.js"></script>
+<script>
+
+let listsSelect = document.getElementById("select");
+let addBtn = document.getElementById("add");
+
+addBtn.addEventListener("click",() =>
+{
+  makeAddRequest(listsSelect[listsSelect.selectedIndex].id,<%= basic.id %>)
+})
+
+function makeAddRequest(listID,movieID,)
+{
+  fetch("/user/addToList",
+  {
+    method: "POST",
+    headers:
+    {
+      "Content-Type":"application/json",
+    },
+    body: JSON.stringify({category: "movie",ListId: listID, id: movieID})
+  })
+  .then(res => console.log(res));
+
+}
+
+</script>
+
+</body>
+
+</html>

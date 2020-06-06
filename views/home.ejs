@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<head>
+<title>Home</title>
+<link rel="stylesheet" type="text/css" href="/home.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+<%- include("./partials/nav",{ user: user}) %>
+
+<div class="container">
+
+<div class="contian">
+<div class="popular">
+<h3>Popular Movies</h3>
+<div class="collection">
+<% movies.forEach((movie) =>
+{%>
+   <div class="card movie" id="<%= movie.id %>">
+    <img src="https://image.tmdb.org/t/p/original/<%=movie.poster_path%>" />
+    <h3><%= movie.title %></h3>
+    <h3><%= movie.vote_average %></h3>
+    <p><%= movie.release_date%></p>
+   </div>
+<% }) %>
+ </div>
+</div>
+
+<div class="popular">
+<h3>Popular Shows</h3>
+  <div class="collection">
+  <% shows.forEach((show) =>
+  {%>
+     <div class="card show" id="<%= show.id %>">
+      <img src="https://image.tmdb.org/t/p/original/<%=show.poster_path%>" />
+      <h3><%= show.name %></h3>
+      <h3><%= show.vote_average %></h3>
+      <p><%= show.first_air_date%></p>
+     </div>
+  <% }) %>
+   </div>
+</div>
+
+</div>
+
+</div>
+
+<script src="/InteractMovie.js"> </script>
+<script src="/InteractShow.js"> </script>
+</body>
+
+
+</html>

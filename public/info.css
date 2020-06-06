@@ -1,0 +1,130 @@
+*
+{
+  color:  #edf2f7;
+}
+
+.container
+{
+  min-height: 100vh;
+  max-height: auto;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+.all-info
+{
+  min-height: 300vh;
+  max-height: auto;
+  width: 70vw;
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+}
+
+.basic
+{
+  min-height: 500px;
+  max-height: auto;
+  width: 100%;
+  background-color: #3c366b;
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.basic img
+{
+  height: auto;
+  width: 200px;
+  align-self: center;
+}
+
+.basic .info
+{
+  text-align: center;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 50%;
+}
+
+
+.basic .info div
+{
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  padding: 10px;
+}
+
+.cast
+{
+  min-height: 400px;
+  max-height: auto;
+  width: 100%;
+  background-color: #3c366b;
+  margin-top: 20px;
+  padding: 20px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.basic a
+{
+  text-decoration: none;
+  width: 100%;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.lists
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+}
+
+.lists button
+{
+  border: none;
+  padding: 3px;
+  border-radius: 3px;
+  width: 100%;
+  cursor: pointer;
+  background-color: #5c5cd6;
+}
+
+select
+{
+  padding: 3px;
+  border-radius: 5px;
+  margin: 10px 0;
+  background-color: #666699;
+  border: none;
+}
+
+.display
+{
+  display: flex;
+  overflow-x: auto;
+  text-align: center;
+
+}
+
+
+.card img
+{
+  height: 200px;
+  width: auto;
+}
+
+.card
+{
+  margin: 0 10px;
+  cursor: pointer;
+}

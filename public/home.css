@@ -1,0 +1,108 @@
+body
+{
+  background: linear-gradient(180deg,#4a939e,#316c8f);
+  overflow-x: hidden;
+}
+
+.container
+{
+  display: flex;
+  width: 100vw;
+  height: auto;
+  justify-content: center;
+
+}
+
+ h1
+ {
+  color: #edf2f7;
+ }
+
+ h3
+ {
+  color: #edf2f7;
+ }
+
+.contian
+{
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  overflow-x: visible;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.popular
+{
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  padding: 10px;
+  justify-content: space-around;
+  width: 100%;
+  overflow-x: visible;
+
+}
+
+.collection
+{
+  display: flex;
+  overflow-y: hidden;
+  height: 100%;
+  padding: 10px;
+  width: 100%;
+}
+
+.card
+{
+
+  margin: 0 20px;
+  height: auto;
+  min-width: 250px;
+	background-color: #3c366b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.card img
+{
+  height: auto;
+  width: 100%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.card h3
+{
+  padding: 10px;
+  color: #a0aec0;
+}
+
+
+
+@media (max-width: 800px)
+{
+  nav
+  {
+    flex-direction: column;
+    height: auto;
+  }
+
+  nav .links
+  {
+    width: 80vw;
+    margin: 20px 0px;
+
+  }
+
+  nav .links
+  {
+    font-size: 1rem;
+  }
+}

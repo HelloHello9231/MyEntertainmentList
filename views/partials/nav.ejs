@@ -1,0 +1,39 @@
+<link rel="stylesheet" type="text/css" href="/nav.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<% if(typeof  user === "undefined")
+{%>
+  <nav>
+  <a href="/home"><h1>MyEntertainmentList</h1></a>
+  <div class="links">
+  <a href="/movies?type=popular&pageNum=1">Movies </a>
+  <a href="/Shows?type=popular&pageNum=1">Tv Shows</a>
+  <a href="/Search">Search</a>
+  <a href="/autho/verify">Log In/Register</a>
+  </div>
+
+  </nav>
+<% }
+else
+{%>
+  <nav>
+  <a href="/home"><h1>MyEntertainmentList</h1></a>
+  <div class="links">
+  <a href="/movies?type=popular&pageNum=1">Movies </a>
+  <a href="/Shows?type=popular&pageNum=1">Tv Shows</a>
+  <a href="/Search">Search</a>
+  <div id="drop">
+  <a href="#" id="drop-down">Personal</a>
+  <div class="options" id="options">
+  <a href="/user/MyLists">My Lists</a>
+  <a href="#">Friends</a>
+  <a href="#">Friend Requests</a>
+  <a href="/autho/logout">Log Out</a>
+  </div>
+  </div>
+</div>
+  </nav>
+<% }%>
+
+
+<script src="/nav.js"> </script>
